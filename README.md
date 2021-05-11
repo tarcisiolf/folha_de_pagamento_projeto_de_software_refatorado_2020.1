@@ -49,47 +49,47 @@ pagamento para cada empregado desde a última vez em que este foi pago.
 | 9 | Agenda de Pagamento | Cada empregado é pago de acordo com uma "agenda de pagamento". Empregados podem selecionar a agenda de pagamento que desejam. Por default, as agendas "semanalmente", "mensalmente" e "bi- semanalmente" são usadas, como explicado na descricao geral. Posteriormente, um empregado pode pedir para ser pago de acordo com qualquer uma dessas agendas.|
 | 10 | Criação de Novas Agendas de Pagamento | A direção da empresa pode criar uma nova agenda de pagamento e disponibilizá-la para os empregados escolherem, se assim desejarem. Uma agenda é especificada através de um string. Alguns exemplos mostram as possibilidades: "mensal 1": dia 1 de todo mês "mensal 7": dia 7 de todo mês "mensal $": último dia útil de todo mês "semanal 1 segunda": toda semana às segundas-feiras "semanal 1 sexta": toda semana às sextas-feiras "semanal 2 segunda": a cada 2 semanas às segundas-feiras |
 
-# **Bad Smels **
+# **Bad Smels**
 
-*  Duplicated Code
+## Duplicated Code
 
-Na classe EmployessFunction os métodos: addEmployee e editEmployees;
-Na classe Employess Function os métodos: infoEmployee, inforHourly , infoSalaried e infoComissioned;
-Na classe Day os métodos: getWeekDayString e getWeekDayInt;
-Na classe Employee os métodos: printEmployeeInfo, printHourlyInfo, printSalariedInfo e printComissionedInfo;
+* Na classe EmployessFunction os métodos: addEmployee e editEmployees;
+* Na classe Employess Function os métodos: infoEmployee, inforHourly , infoSalaried e infoComissioned;
+* Na classe Day os métodos: getWeekDayString e getWeekDayInt;
+* Na classe Employee os métodos: printEmployeeInfo, printHourlyInfo, printSalariedInfo e printComissionedInfo;
 
-*  Long Parameter List
+## Long Parameter List
 
-Na classe Paycheck no método: calcSalary;
-Na classe Payrool no método: PaymentList;
+* Na classe Paycheck no método: calcSalary;
+* Na classe Payrool no método: PaymentList;
 
-* Long Method
+## Long Method
 
-Na classe Main no método: main;
-Na classe Employess Function os métodos: addEmployee, editEmployee, removeEmployee;
-Na classe Payroll o método: PaymentList;
-Na classe Paycheck o método: calcSalary;
-Na classe Day nos métodos: getWeekDayString e getWeekDayInt;
+* Na classe Main no método: main;
+* Na classe Employess Function os métodos: addEmployee, editEmployee, removeEmployee;
+* Na classe Payroll o método: PaymentList;
+* Na classe Paycheck o método: calcSalary;
+* Na classe Day nos métodos: getWeekDayString e getWeekDayInt;
 
-*  Large Class
+## Large Class
 
-Classe Employee;
+* Classe Employee;
 
-*  Lazy Class
+## Lazy Class
 
-Classe Syndicate;
+* Classe Syndicate;
 
-* Speculative Generality
+## Speculative Generality
 
-Classe Taxes;
+* Classe Taxes;
 
-* Indecent Exposure
+## Indecent Exposure
 
-Na classe EmployessFunction nos métodos: addEmployee e editEmployee;
+* Na classe EmployessFunction nos métodos: addEmployee e editEmployee;
 Na classe Payroll no método: PaymentList;
 
-* Data Class
+## Data Class
 
-Classe Employee e  Paycheck;
+* Classe Employee e  Paycheck;
 
 
