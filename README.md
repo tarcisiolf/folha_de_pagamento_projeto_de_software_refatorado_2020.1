@@ -54,7 +54,6 @@ pagamento para cada empregado desde a última vez em que este foi pago.
 ## Duplicated Code
 
 * Na classe EmployessFunction os métodos: addEmployee, removeEmployee e editEmployees;
-* Na classe EmployessFunction os métodos: infoEmployee, inforHourly , infoSalaried e infoComissioned;
 * Na classe Employee os métodos: printEmployeeInfo, printHourlyInfo, printSalariedInfo e printComissionedInfo;
 
 ## Long Parameter List
@@ -116,3 +115,12 @@ A seguir é demonstrada a implementação antiga dos métodos acima e a implemen
 * setTimecard [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/TimecardLaunch.java#L16-L32), setTimecard [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b412d276a6493c278c5df04cc8b3e5cb6047d81b/src/app/TimecardLaunch.java#L15-L30);
 * PaymentList [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/payment/Payroll.java#L22-L32), PaymentList [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b412d276a6493c278c5df04cc8b3e5cb6047d81b/src/payment/Payroll.java#L16-L25).
 
+Apresentam o mesmo problema os seguintes métodos da Classe Employee:
+* O método printHourlyInfo;
+* O método printSalariedInfo;
+* O método printComissionedInfo;
+
+A seguir é demonstrada a implementação antiga dos métodos acima e a implementação refatorada:
+* printHourlyInfo [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/employees/Employee.java#L94-L99), printHourlyInfo [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b1d130a0c4fa84e630309fd54711e961264218b4/src/employees/Employee.java#L94);
+* printSalariedInfo [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/employees/Employee.java#L108-L113), printSalariedInfo [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b1d130a0c4fa84e630309fd54711e961264218b4/src/employees/Employee.java#L103);
+* printComissionedInfo [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/employees/Employee.java#L119-L124), printComissionedInfo [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b1d130a0c4fa84e630309fd54711e961264218b4/src/employees/Employee.java#L109);
