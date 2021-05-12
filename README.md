@@ -53,9 +53,8 @@ pagamento para cada empregado desde a última vez em que este foi pago.
 
 ## Duplicated Code
 
-* Na classe EmployessFunction os métodos: addEmployee e editEmployees;
-* Na classe Employess Function os métodos: infoEmployee, inforHourly , infoSalaried e infoComissioned;
-* Na classe Day os métodos: getWeekDayString e getWeekDayInt;
+* Na classe EmployessFunction os métodos: addEmployee, removeEmployee e editEmployees;
+* Na classe EmployessFunction os métodos: infoEmployee, inforHourly , infoSalaried e infoComissioned;
 * Na classe Employee os métodos: printEmployeeInfo, printHourlyInfo, printSalariedInfo e printComissionedInfo;
 
 ## Long Parameter List
@@ -92,4 +91,28 @@ Na classe Payroll no método: PaymentList;
 
 * Classe Employee e  Paycheck;
 
+# **Refatoração**
+
+## Extract Method
+O Design Pattern Extract Method foi aplicado para solucionar um code smell da Classe EmployeesFunction . Na 1ª implementação no método addEmployee disponível [aqui](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/EmployessFunction.java#L22-L173) sempre que foi necessário ler a entrada do usuário foi criada uma variável do tipo Scanner para receber as informações digitadas no terminal. Dessa forma, houve uma grande cópia de código para receber as entradas do usuário. 
+
+O padrão Extract Method foi utilizado para pegar a parte de código que era copiada e colocá-la dentro métodos de uma classe SystemInput [disponível aqui](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/5dc84c829d16f03ed6dbee0350bb5c29e81e0044/src/app/SystemInput.java#L6-L73). Dessa forma, a cópia de código foi evitada. [Aqui](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/5dc84c829d16f03ed6dbee0350bb5c29e81e0044/src/app/EmployessFunction.java#L20-L168) está o método addEmployee refatorado.
+
+A mesma situação demonstrada acima se repetiu nos métodos removeEmployee e editEmployee dessa mesma classe. A seguir, é demonstrada a implementação antiga dos métodos juntamente com a refatoração dos métodos citados.
+* removeEmployee [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/EmployessFunction.java#L253-L282), removeEmployee [refatorado](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/5dc84c829d16f03ed6dbee0350bb5c29e81e0044/src/app/EmployessFunction.java#L242-L269);
+* editEmployee [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/EmployessFunction.java#L284-L548), editEmployee [refatorado](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/5dc84c829d16f03ed6dbee0350bb5c29e81e0044/src/app/EmployessFunction.java#L271-L528);
+
+Apresentam o mesmo problema os seguintes métodos: 
+* O método setServiceFee da Classe Taxes Launch;
+* O método main da Classe Main;
+* O método addSale da Classe SalesResult;
+* O método setTimecard da Classe TimecardLaunch;
+* O método PaymentList da Classe Payrool;
+
+A seguir é demonstrada a implementação antiga dos métodos acima e a implementação refatorada.
+* setServiceFee [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/TaxesLaunch.java#L13-L22), setServiceFee [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b412d276a6493c278c5df04cc8b3e5cb6047d81b/src/app/TaxesLaunch.java#L12-L20);
+* main [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/Main.java#L12-L38), main [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b412d276a6493c278c5df04cc8b3e5cb6047d81b/src/app/Main.java#L10-L32);
+* addSale [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/SalesResult.java#L13-L22), addSale [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b412d276a6493c278c5df04cc8b3e5cb6047d81b/src/app/SalesResult.java#L13-L21);
+* setTimecard [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/app/TimecardLaunch.java#L16-L32), setTimecard [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b412d276a6493c278c5df04cc8b3e5cb6047d81b/src/app/TimecardLaunch.java#L15-L30);
+* PaymentList [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/payment/Payroll.java#L22-L32), PaymentList [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b412d276a6493c278c5df04cc8b3e5cb6047d81b/src/payment/Payroll.java#L16-L25).
 
