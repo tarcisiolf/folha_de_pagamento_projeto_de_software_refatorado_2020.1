@@ -1,15 +1,9 @@
 package payment;
 
-//import java.util.Scanner;
+import java.util.ArrayList;
 
 import app.EmployessFunction;
 import app.SystemInput;
-
-import java.util.ArrayList;
-//import java.util.Calendar;
-
-//import wage.Paycheck;
-//import employees.Sales;
 import employees.Employee;
 import employees.Hourly;
 import employees.Comissioned;
@@ -19,8 +13,6 @@ import date.Day;
 public class Payroll {
     
     public static void PaymentList(ArrayList<Employee> employeesList) {
-        
-        //Scanner input = new Scanner(System.in);
         String date = new String();
         String dayWeekString = new String();
         double salary = 0.0f;
@@ -30,7 +22,6 @@ public class Payroll {
         int dayDate = -1;
 
         System.out.println("Digite a data de hoje no formato dd/MM/yyyy");
-        //date = input.nextLine();
         date = SystemInput.readString();
 
         String paymentAgenda = new String();     
@@ -215,18 +206,14 @@ public class Payroll {
     }
 
     public static void changeEmployeePaymentAgenda(ArrayList<Employee> employeesList) {
-
-        //Scanner input = new Scanner(System.in);
         String name = new String();
         int paymentAgenda = -1;
         int indexOfEmployee = -1;
 
         System.out.println("Digite o nome do empregado onde será editada a agenda de pagamento");
-        // name = input.nextLine();
         name = SystemInput.readString();
 
         System.out.println("Digite o nº da opção da nova agenda de pagamento do empregado dentre as seguintes opções:\n '1 - Semanalmente', '2 - Mensalmente', '3 - Bi-semanalmente'");
-        // paymentAgenda = input.nextInt();
         paymentAgenda = SystemInput.readInt();
 
         indexOfEmployee = EmployessFunction.getIndexList(employeesList, name);
