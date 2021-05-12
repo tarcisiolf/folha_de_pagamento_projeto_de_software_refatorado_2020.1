@@ -1,18 +1,18 @@
 package app;
 
-import java.util.Scanner;
+//import java.util.Scanner;
 import java.util.ArrayList;
 import employees.Employee;
 import payment.Payroll;
-import employees.Comissioned;
+//import employees.Comissioned;
+//import app.SystemInput;
 
 public class Main {
 
     public static void main(String [] args) {
         int opition = -1;
 
-        Scanner input = new Scanner(System.in);
-
+        //Scanner input = new Scanner();
         ArrayList<Employee> employeesList = new ArrayList<Employee>();
 
         while (opition != 0) {
@@ -34,8 +34,9 @@ public class Main {
             System.out.print("  -> ");
 
 
-            opition = input.nextInt();
-            input.nextLine();
+            //opition = input.nextInt();
+            opition = SystemInput.readInt();
+            //input.nextLine();
 
             switch (opition) {
                 case 1:
@@ -88,6 +89,7 @@ public class Main {
                     break;
                         
                 default:
+                    System.out.println("Digite o número de uma opção válida");
                     break;
             }            
         }
