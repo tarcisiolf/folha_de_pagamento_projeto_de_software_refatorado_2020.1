@@ -91,12 +91,7 @@ public class Employee {
 
     public String printHourlyInfo(Employee employee){ 
         Hourly hourlyEmployee = ((Hourly)employee);
-        return  "Name: " + employee.name + 
-                "\nAddress: " + employee.address + 
-                "\nEmployeeID: " + employee.employeeID +
-                "\nFiliated: " + employee.filiated +
-                "\nEmployeeSyndicateID: "+ employee.employeeSyndicateID +
-                "\nPaymentMethod: " +employee.getPaymentMethod().getType()+
+        return  printEmployeeInfo(employee) + 
                 "\nNormalTaxe: "+hourlyEmployee.getNormalTaxe()+
                 "\nNumberHours: "+hourlyEmployee.getTimecard().getNumberHours();
 
@@ -105,23 +100,13 @@ public class Employee {
 
     public String printSalariedInfo(Employee employee){ 
         Salaried salariedEmployee = ((Salaried)employee);
-        return  "Name: " + employee.name + 
-                "\nAddress: " + employee.address + 
-                "\nEmployeeID: " + employee.employeeID +
-                "\nFiliated: " + employee.filiated +
-                "\nEmployeeSyndicateID: "+ employee.employeeSyndicateID +
-                "\nPaymentMethod: " +employee.getPaymentMethod().getType()+
+        return  printEmployeeInfo(employee) + 
                 "\nBaseSalary: "+salariedEmployee.getBaseSalary();
     }
 
     public String printComissionedInfo(Employee employee){ 
         Comissioned comissionedEmployee = ((Comissioned)employee);
-        return  "Name: " + employee.name + 
-                "\nAddress: " + employee.address + 
-                "\nEmployeeID: " + employee.employeeID +
-                "\nFiliated: " + employee.filiated +
-                "\nEmployeeSyndicateID: "+ employee.employeeSyndicateID +
-                "\nPaymentMethod: " +employee.getPaymentMethod().getType()+
+        return  printEmployeeInfo(employee) + 
                 "\nBaseSalary: "+comissionedEmployee.getBaseSalary()+
                 "\nComission: "+comissionedEmployee.getComission()+
                 "\nSales: "+comissionedEmployee.getSales().getValue();
