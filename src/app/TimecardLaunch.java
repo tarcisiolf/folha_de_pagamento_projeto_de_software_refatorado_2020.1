@@ -1,7 +1,6 @@
 package app;
 
 import java.util.ArrayList;
-//import java.util.Scanner;
 import java.util.Random;
 
 import employees.Hourly;
@@ -13,7 +12,6 @@ public class TimecardLaunch {
     public static void setTimecard(ArrayList <Employee> employeesList) {
 
         Random random = new Random();
-        //Scanner input = new Scanner(System.in);
         double workedHoursNumber = 0.0f;
         int timecardNumber = 0;
         String name = new String();
@@ -23,15 +21,12 @@ public class TimecardLaunch {
         int indexOfEmployee = -1;
 
         System.out.println("Digite o nome do empregado onde serão anotadas as informações do cartão de ponto:");
-        //name = input.nextLine();
         name = SystemInput.readString();
 
         System.out.println("Digite a hora de entrada no formato 00:00 :");
-        //timeIn = input.nextLine();
         timeIn = SystemInput.readString();
 
         System.out.println("Digite a hora de saída no formato 00:00 :");
-        //timeOut = input.nextLine();
         timeOut = SystemInput.readString();
 
         indexOfEmployee = EmployessFunction.getIndexList(employeesList, name);
