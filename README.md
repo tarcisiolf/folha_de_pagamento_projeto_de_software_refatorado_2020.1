@@ -24,7 +24,7 @@ de salário fixo mais as comissões do período.
    - Podem receber um cheque em mãos 
    - Podem pedir depósito em conta bancária 
 
-* Alguns empregados pertencem ao sindicato (para simplificar, só há um possível sindicato).
+* Alguns empregados pehttps://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDaySalariedStrategy.javartencem ao sindicato (para simplificar, só há um possível sindicato).
 O sindicato cobra uma taxa mensal do empregado e essa taxa pode variar entre
 empregados. A taxa sindical é deduzida do salário. Além do mais, o sindicato pode
 ocasionalmente cobrar taxas de serviços adicionais a um empregado. Tais taxas de serviço
@@ -124,3 +124,22 @@ A seguir é demonstrada a implementação antiga dos métodos acima e a implemen
 * printHourlyInfo [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/employees/Employee.java#L94-L99), printHourlyInfo [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b1d130a0c4fa84e630309fd54711e961264218b4/src/employees/Employee.java#L94);
 * printSalariedInfo [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/employees/Employee.java#L108-L113), printSalariedInfo [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b1d130a0c4fa84e630309fd54711e961264218b4/src/employees/Employee.java#L103);
 * printComissionedInfo [antigo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/employees/Employee.java#L119-L124), printComissionedInfo [novo](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/b1d130a0c4fa84e630309fd54711e961264218b4/src/employees/Employee.java#L109);
+
+## Strategy
+Na implementação antiga do método PaymentList da Classe Payroll haviam 9 métodos de pagamentos diferentes. A implementação desse método está disponível disponível [aqui](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/payment/Payroll.java#L50-L213). Para cada método de pagamento, havia uma variante do algoritmo. Foi aplicado o padrão de projeto Strategy em cada opção de pagamento. Foi criada uma interface PaymentStrategy e para cada tipo de pagamento, uma estratégia foi implementada. Dessa forma, foi evitada a exposição de dados específicos do algoritmo.
+
+* [Estratégia 1](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridayComissionedStrategy.java)
+* [Estrategia 2](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridayHourlyStrategy.java) 
+* [Estratégia 3.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridaySalariedStrategy.java) 
+* [Estratégia 4.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridayComissionedStrategy.java) 
+* [Estratégia 5.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridayHourlyStrategy.java) 
+* [Estratégia 6.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridaySalariedStrategy.java) 
+* [Estratégia 7](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDayComissionedStrategy.java) 
+* [Estratégia 8](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDayHourlyStrategy.java) 
+* [Estratégia 9](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDaySalariedStrategy.java) 
+
+Essas estratégias são usadas de acordo com a agenda de pagamento, o tipo de empregado e o dia ou semana do mês.
+A seguir, é demonstrada a implementação da Interface PaymentStrategy e da Classe Context.
+* [Interface](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/PaymentStrategy.java)
+* [Context](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/Context.java)
+* [Aqui](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/850c1cb6fcb0d6965b187337fc7723a1a55a6f5f/src/payment/Payroll.java#L39-L82) é mostrado a implementação do método PaymentList refatorado.
