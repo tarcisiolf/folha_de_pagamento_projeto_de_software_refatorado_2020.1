@@ -5,18 +5,14 @@ import java.util.ArrayList;
 import app.EmployessFunction;
 import app.SystemInput;
 import employees.Employee;
-import employees.Hourly;
-import employees.Comissioned;
-import employees.Salaried;
 import date.Day;
+
 
 public class Payroll {
     
     public static void PaymentList(ArrayList<Employee> employeesList) {
         String date = new String();
         String dayWeekString = new String();
-        double salary = 0.0f;
-        int dayWeekInt = -1;
         int weekMonth = -1;
         int lastDayMonth = -1;
         int dayDate = -1;
@@ -29,8 +25,6 @@ public class Payroll {
         dayDate = Integer.parseInt(dateSplit[0]);
 
         for (Employee employee : employeesList){
-            salary = -1.0f;
-            dayWeekInt = -1;
             weekMonth = -1;
             lastDayMonth = -1;
 
@@ -39,167 +33,52 @@ public class Payroll {
             weekMonth = Day.WeekMonth(date);
             lastDayMonth = Day.LastDayMonth(date);
 
+            Context context = null;
+
             System.out.println("\n");
-            if (paymentAgenda.intern() == "Weekly".intern() && dayWeekString.intern() == "SEX".intern()){
-
-                if (employee.getSalary().getEmployeeType().intern() == "Hourly".intern()) {
-
-                    System.out.println("Pagamento Horista | Agenda: Semanalmente\n");
-                    //System.out.println(employee.printHourlyInfo(employee));
-    
-                    double normalTaxe = employee.getSalary().getNormalTaxe();
-                    
-                    salary = employee.getSalary().calcSalary(employee, "Hourly", 0.0f, 0.0f, 0.0f, ((Hourly)employee).getTimecard(), normalTaxe, employee.getFiliated());
-    
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-    
-                    ((Hourly)employee).getTimecard().setNumberHours(0.0f);
-                    employee.getSalary().setPaymentDate(date);
-                }
-
-                else if (employee.getSalary().getEmployeeType().intern() == "Salaried".intern()) {
-                    
-                    System.out.println("Pagamento Salariado | Agenda: Semanalmente\n");
-                    //System.out.println(employee.printSalariedInfo(employee));
-    
-                    double baseSalary = employee.getSalary().getBaseSalary();
-    
-                    salary = employee.getSalary().calcSalary(employee, "Salaried", ((Salaried)employee).getBaseSalary(), 0.0f, 0.0f, null, 0.0f, employee.getFiliated());
-    
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-    
-                    employee.getSalary().setPaymentDate(date);
-                }
-
-
-                else if (employee.getSalary().getEmployeeType().intern() == "Comissioned".intern()) {
-                    System.out.println("Pagamento Vendedor | Agenda: Semanalmente\n");
-                    //System.out.println(employee.printComissionedInfo(employee));
-
-                    double baseSalary = ((Comissioned)employee).getBaseSalary();
-                    double comission = ((Comissioned)employee).getComission();
-                    double sales = ((Comissioned)employee).getSales().getValue();
-
-                    salary = employee.getSalary().calcSalary(employee ,"Comissioned", baseSalary, comission, sales, null, 0.0f, employee.getFiliated());
-
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-
-                    ((Comissioned)employee).getSales().setValue(0.0f);
-                    employee.getSalary().setPaymentDate(date);
-                }
-
-            
+            if (paymentAgenda.intern() == "Weekly".intern() && dayWeekString.intern() == "SEX".intern() && employee.getSalary().getEmployeeType().intern() == "Hourly".intern()){
+                context = new Context(new WeeklyFridayHourlyStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
             }
 
-            else if(paymentAgenda.intern() == "Monthly".intern() && dayDate == lastDayMonth){
-
-                if (employee.getSalary().getEmployeeType().intern() == "Salaried".intern()) {
-
-                    System.out.println("Pagamento Salariado | Agenda: Mensalmente\n");
-                    //System.out.println(employee.printSalariedInfo(employee));
-    
-                    double baseSalary = employee.getSalary().getBaseSalary();
-    
-                    salary = employee.getSalary().calcSalary(employee, "Salaried", ((Salaried)employee).getBaseSalary(), 0.0f, 0.0f, null, 0.0f, employee.getFiliated());
-    
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-    
-                    employee.getSalary().setPaymentDate(date);
-                }
-
-                else if (employee.getSalary().getEmployeeType().intern() == "Hourly".intern()) {
-
-                    System.out.println("Pagamento Horista | Agenda: Mensalmente\n");
-                    //System.out.println(employee.printHourlyInfo(employee));
-    
-                    double normalTaxe = employee.getSalary().getNormalTaxe();
-                    
-                    salary = employee.getSalary().calcSalary(employee, "Hourly", 0.0f, 0.0f, 0.0f, ((Hourly)employee).getTimecard(), normalTaxe, employee.getFiliated());
-    
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-    
-                    ((Hourly)employee).getTimecard().setNumberHours(0.0f);
-                    employee.getSalary().setPaymentDate(date);
-                }
-
-                else if (employee.getSalary().getEmployeeType().intern() == "Comissioned".intern()) {
-
-                    System.out.println("Pagamento Vendedor | Agenda: Mensalmente\n");
-                    //System.out.println(employee.printComissionedInfo(employee));
-
-                    double baseSalary = ((Comissioned)employee).getBaseSalary();
-                    double comission = ((Comissioned)employee).getComission();
-                    double sales = ((Comissioned)employee).getSales().getValue();
-
-                    salary = employee.getSalary().calcSalary(employee ,"Comissioned", baseSalary, comission, sales, null, 0.0f, employee.getFiliated());
-
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-
-                    ((Comissioned)employee).getSales().setValue(0.0f);
-                    employee.getSalary().setPaymentDate(date);
-                }
- 
-
+            else if(paymentAgenda.intern() == "Weekly".intern() && dayWeekString.intern() == "SEX".intern() && employee.getSalary().getEmployeeType().intern() == "Salaried".intern()){
+                context = new Context(new WeeklyFridaySalariedStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
             }
 
-            else if(paymentAgenda.intern() == "Two-Weekly".intern() && (weekMonth == 2 || weekMonth == 4) && (dayWeekString.intern() == "SEX".intern())){
+            else if(paymentAgenda.intern() == "Weekly".intern() && dayWeekString.intern() == "SEX".intern() && employee.getSalary().getEmployeeType().intern() == "Comissioned".intern()){
+                context = new Context(new WeeklyFridayComissionedStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
+            }
 
-                if (employee.getSalary().getEmployeeType().intern() == "Comissioned".intern()) {
+            else if(paymentAgenda.intern() == "Monthly".intern() && dayDate == lastDayMonth && employee.getSalary().getEmployeeType().intern() == "Salaried".intern()){
+                context = new Context(new MonthlyLastDaySalariedStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
+            }
 
-                    System.out.println("Pagamento Vendedor | Agenda: Bi-semanalmente\n");
-                    //System.out.println(employee.printComissionedInfo(employee));
-    
-                    double baseSalary = ((Comissioned)employee).getBaseSalary();
-                    double comission = ((Comissioned)employee).getComission();
-                    double sales = ((Comissioned)employee).getSales().getValue();
-    
-                    salary = employee.getSalary().calcSalary(employee ,"Comissioned", baseSalary, comission, sales, null, 0.0f, employee.getFiliated());
-    
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-    
-                    ((Comissioned)employee).getSales().setValue(0.0f);
-                    employee.getSalary().setPaymentDate(date);
-                }
+            else if(paymentAgenda.intern() == "Monthly".intern() && dayDate == lastDayMonth && employee.getSalary().getEmployeeType().intern() == "Hourly".intern()){
+                context = new Context(new MonthlyLastDayHourlyStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
+            }
 
-                else if (employee.getSalary().getEmployeeType().intern() == "Salaried".intern()) {
+            else if(paymentAgenda.intern() == "Monthly".intern() && dayDate == lastDayMonth && employee.getSalary().getEmployeeType().intern() == "Comissioned".intern()){
+                context = new Context(new MonthlyLastDayComissionedStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
+            }
 
-                    System.out.println("Pagamento Salariado | Agenda: Bi-Semanalmente\n");
-                    //System.out.println(employee.printSalariedInfo(employee));
-    
-                    double baseSalary = employee.getSalary().getBaseSalary();
-    
-                    salary = employee.getSalary().calcSalary(employee, "Salaried", ((Salaried)employee).getBaseSalary(), 0.0f, 0.0f, null, 0.0f, employee.getFiliated());
-    
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-    
-                    employee.getSalary().setPaymentDate(date);
-                }
+            else if(paymentAgenda.intern() == "Two-Weekly".intern() && (weekMonth == 2 || weekMonth == 4) && (dayWeekString.intern() == "SEX".intern()) && employee.getSalary().getEmployeeType().intern() == "Comissioned".intern()){
+                context = new Context(new TwoWeeklyOrFridayComissionedStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
+            }
 
-                else if (employee.getSalary().getEmployeeType().intern() == "Hourly".intern()) {
-                    
-                    System.out.println("Pagamento Horista | Agenda: Bi-semanalmente\n");
-                    //System.out.println(employee.printHourlyInfo(employee));
-    
-                    double normalTaxe = employee.getSalary().getNormalTaxe();
-                    
-                    salary = employee.getSalary().calcSalary(employee, "Hourly", 0.0f, 0.0f, 0.0f, ((Hourly)employee).getTimecard(), normalTaxe, employee.getFiliated());
-    
-                    System.out.println("Foi feito o pagamento do empregado: "+employee.getName());
-                    System.out.println("O valor do pagamento é de R$" + salary);
-    
-                    ((Hourly)employee).getTimecard().setNumberHours(0.0f);
-                    employee.getSalary().setPaymentDate(date);
-                }
+            else if(paymentAgenda.intern() == "Two-Weekly".intern() && (weekMonth == 2 || weekMonth == 4) && (dayWeekString.intern() == "SEX".intern()) && employee.getSalary().getEmployeeType().intern() == "Salaried".intern()){
+                context = new Context(new TwoWeeklyOrFridaySalariedStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
+            }
 
-
+            else if(paymentAgenda.intern() == "Two-Weekly".intern() && (weekMonth == 2 || weekMonth == 4) && (dayWeekString.intern() == "SEX".intern()) && employee.getSalary().getEmployeeType().intern() == "Hourly".intern()){
+                context = new Context(new TwoWeeklyOrFridayHourlyStrategy());
+                context.executePaymentStrategy(employee, paymentAgenda, date);
             }
 
         }
