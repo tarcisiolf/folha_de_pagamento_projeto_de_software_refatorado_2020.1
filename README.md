@@ -90,6 +90,12 @@ Na classe Payroll no método: PaymentList;
 
 * Classe Employee e  Paycheck;
 
+## Featury Envy
+
+* O método addSale da Classe Sales result está interessado nos métodos da Classe Sale;
+* O método setServiceTaxe da Classe TaxesLaunch está interessado nos métodos da Classe Taxe;
+* O método setTimecard da Classe TimecardLaunch está interessado nos métodos da Classe Timecard;
+
 # **Refatoração**
 
 ## Extract Method
@@ -128,18 +134,26 @@ A seguir é demonstrada a implementação antiga dos métodos acima e a implemen
 ## Strategy
 Na implementação antiga do método PaymentList da Classe Payroll haviam 9 métodos de pagamentos diferentes. A implementação desse método está disponível disponível [aqui](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_2020.1/blob/bb1ee1fe8f913723b47df94968dfec3bb7cf90f4/src/payment/Payroll.java#L50-L213). Para cada método de pagamento, havia uma variante do algoritmo. Foi aplicado o padrão de projeto Strategy em cada opção de pagamento. Foi criada uma interface PaymentStrategy e para cada tipo de pagamento, uma estratégia foi implementada. Dessa forma, foi evitada a exposição de dados específicos do algoritmo.
 
-* [Estratégia 1](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridayComissionedStrategy.java)
-* [Estrategia 2](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridayHourlyStrategy.java) 
-* [Estratégia 3.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridaySalariedStrategy.java) 
-* [Estratégia 4.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridayComissionedStrategy.java) 
-* [Estratégia 5.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridayHourlyStrategy.java) 
-* [Estratégia 6.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridaySalariedStrategy.java) 
-* [Estratégia 7](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDayComissionedStrategy.java) 
-* [Estratégia 8](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDayHourlyStrategy.java) 
-* [Estratégia 9](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDaySalariedStrategy.java) 
+* [Estratégia 1](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridayComissionedStrategy.java);
+* [Estrategia 2](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridayHourlyStrategy.java);
+* [Estratégia 3.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/WeeklyFridaySalariedStrategy.java);
+* [Estratégia 4.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridayComissionedStrategy.java);
+* [Estratégia 5.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridayHourlyStrategy.java);
+* [Estratégia 6.](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/TwoWeeklyOrFridaySalariedStrategy.java);
+* [Estratégia 7](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDayComissionedStrategy.java);
+* [Estratégia 8](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDayHourlyStrategy.java);
+* [Estratégia 9](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/MonthlyLastDaySalariedStrategy.java);
 
 Essas estratégias são usadas de acordo com a agenda de pagamento, o tipo de empregado e o dia ou semana do mês.
 A seguir, é demonstrada a implementação da Interface PaymentStrategy e da Classe Context.
-* [Interface](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/PaymentStrategy.java)
-* [Context](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/Context.java)
+* [Interface](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/PaymentStrategy.java);
+* [Context](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/main/src/payment/Context.java);
 * [Aqui](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/850c1cb6fcb0d6965b187337fc7723a1a55a6f5f/src/payment/Payroll.java#L39-L82) é mostrado a implementação do método PaymentList refatorado.
+
+## Move Method
+
+Os métodos addSale, setServiceTaxe e setTimecard foram movidos respectivamente para as classes Sale, Taxe e Timecard.
+As alterações estão disponíveis a seguir:
+* [addSale](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/75331afeaa77be36d9a75dbaab06e6c7e0c59dac/src/employees/Sales.java#L28-L58);
+* [setServiceTaxe](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/75331afeaa77be36d9a75dbaab06e6c7e0c59dac/src/union/Taxes.java#L35-L61);
+* [setTimecard](https://github.com/tarcisiolf0/folha_de_pagamento_projeto_de_software_refatorado_2020.1/blob/75331afeaa77be36d9a75dbaab06e6c7e0c59dac/src/workedhours/Timecard.java#L71-L129).
