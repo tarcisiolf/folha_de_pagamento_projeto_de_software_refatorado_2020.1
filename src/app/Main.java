@@ -2,7 +2,10 @@ package app;
 
 import java.util.ArrayList;
 import employees.Employee;
+import employees.Sales;
 import payment.Payroll;
+import union.Taxes;
+import workedhours.Timecard;
 
 public class Main {
 
@@ -46,15 +49,15 @@ public class Main {
                     break;
 
                 case  4:
-                    TimecardLaunch.setTimecard(employeesList);
+                    Timecard.setTimecard(employeesList);
                     break;
 
                 case 5:
-                    SalesResult.addSale(employeesList);
+                    Sales.addSale(employeesList);
                     break;
                     
                 case 6:
-                    TaxesLaunch.setServiceTaxe(employeesList);
+                    Taxes.setServiceTaxe(employeesList);
                     break;
                 
                 case 7:
