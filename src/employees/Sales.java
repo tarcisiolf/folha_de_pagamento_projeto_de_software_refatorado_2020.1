@@ -25,7 +25,7 @@ public class Sales {
         this.value = value + saleValue;
     }
 
-    public static void addSale(ArrayList <Employee> employeesList) {
+    public static void addSaleReport(ArrayList <Employee> employeesList) {
         
         String name = new String();
         double saleValue = 0.0f;

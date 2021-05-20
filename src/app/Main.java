@@ -53,7 +53,7 @@ public class Main {
                     break;
 
                 case 5:
-                    Sales.addSale(employeesList);
+                    Sales.addSaleReport(employeesList);
                     break;
                     
                 case 6:
